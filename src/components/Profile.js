@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   state = {
@@ -7,10 +7,10 @@ class Profile extends Component {
     birthday: "",
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
-      name: value
+      [name]: value,
     });
   };
 
@@ -20,25 +20,27 @@ class Profile extends Component {
     return (
       <div className="Profile">
         <h1>Tell us about you</h1>
-          <input
-            id="username-input"
-            name="name"
-            placeholder="username"
-            value={username}
-            onChange={this.handleChange}
-          /><br/>
-          <input
-            id="birthday-input"
-            name="birthday"
-            type="date"
-            value={birthday}
-            onChange={this.handleChange}
-          /><br/>
-        {username && 
-          birthday &&
-          <Link to={"/fortune/"+username+"&"+birthday}>
+        <input
+          id="username-input"
+          name="username"
+          placeholder="username"
+          value={username}
+          onChange={this.handleChange}
+        />
+        <br />
+        <input
+          id="birthday-input"
+          name="birthday"
+          type="date"
+          value={birthday}
+          onChange={this.handleChange}
+        />
+        <br />
+        {username && birthday && (
+          <Link to={"/fortune/" + username + "&" + birthday} id="fortune-link">
             show my fortune
-          </Link>}
+          </Link>
+        )}
       </div>
     );
   }
